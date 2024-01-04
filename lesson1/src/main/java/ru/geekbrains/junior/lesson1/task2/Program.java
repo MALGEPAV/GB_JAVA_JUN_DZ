@@ -49,6 +49,7 @@ public class Program {
         UMarket market = new UMarket();
         System.out.println("Добро пожаловать в магазин U-Market");
 
+
         while (true)
         {
             System.out.println("================================================================");
