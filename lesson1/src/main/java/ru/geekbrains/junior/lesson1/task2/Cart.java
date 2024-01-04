@@ -58,10 +58,9 @@ public class Cart<T extends Food> {
                                 foodstuffs.add(food);
                                 proteins.set(true);
                             },
-                            () -> {
-                                System.out.println("Невозможно сбалансировать корзину по БЖУ: белков нет хватает(((");
-                                return;
-                            });
+                            () -> System.out.println("Невозможно сбалансировать корзину по БЖУ: белков нет хватает(((")
+                    );
+            if (!proteins.get()) return;
         }
         if (!fats.get()) {
             market.getThings(clazz).stream()
@@ -71,10 +70,8 @@ public class Cart<T extends Food> {
                                 foodstuffs.add(food);
                                 fats.set(true);
                             },
-                            () -> {
-                                System.out.println("Невозможно сбалансировать корзину по БЖУ: жиров нет хватает(((");
-                                return;
-                            });
+                            () -> System.out.println("Невозможно сбалансировать корзину по БЖУ: жиров нет хватает((("));
+            if (!fats.get()) return;
         }
         if (!carbohydrates.get()) {
             market.getThings(clazz).stream()
@@ -84,10 +81,9 @@ public class Cart<T extends Food> {
                                 foodstuffs.add(food);
                                 carbohydrates.set(true);
                             },
-                            () -> {
-                                System.out.println("Невозможно сбалансировать корзину по БЖУ: углеводов нет хватает(((");
-                                return;
-                            });
+                            () -> System.out.println("Невозможно сбалансировать корзину по БЖУ: углеводов нет хватает(((")
+                    );
+            if (!carbohydrates.get()) return;
         }
         if (proteins.get() && fats.get() && carbohydrates.get()) {
             System.out.println("Корзина cбалансирована по БЖУ.");
