@@ -98,15 +98,26 @@ public class ClientManager implements Runnable {
     }
 
     private void sendMessageToClient(String recipientName, String message) {
+        boolean recipientFound = false;
         for (ClientManager client : clients) {
             try {
                 if (client.name.equals(recipientName) && message != null) {
+                    recipientFound = true;
                     client.bufferedWriter.write(message);
                     client.bufferedWriter.newLine();
                     client.bufferedWriter.flush();
                 }
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
+            }
+        }
+        if (!recipientFound) {
+            try {
+                bufferedWriter.write("No client with name '" + recipientName + "'");
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+            } catch (IOException exp) {
+                exp.printStackTrace();
             }
         }
     }
